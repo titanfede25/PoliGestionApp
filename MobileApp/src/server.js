@@ -1,11 +1,11 @@
 import express from "express";
-import PizzaController from "./controllers/pizzaController.js";
+import rutaController from "./controllers/rutaController.js";
 
 const app = express();
 const port = 3001;
 app.use(express.json());
 
-app.use("", PizzaController)
+app.use("", rutaController)
 
 app.listen (port, ()=>{
     console.log(`EJEMPLO ${port}`)
