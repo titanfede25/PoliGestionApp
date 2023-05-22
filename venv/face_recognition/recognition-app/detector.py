@@ -13,17 +13,34 @@ def encode_known_faces(
 ) -> None:
     names = []
     encodings = []
+
     for filepath in Path("training").glob("*/*"):
         name = filepath.parent.name
         image = face_recognition.load_image_file(filepath)
+        input_face_locations = face_recognition.face_locations(
+        input_image, model=model
+    )
+    input_face_encodings = face_recognition.face_encodings(
+        input_image, input_face_locations
+    )
+
         face_locations = face_recognition.face_locations(image, model=model)
         face_encodings = face_recognition.face_encodings(image, face_locations)
 
         for encoding in face_encodings:
             names.append(name)
             encodings.append(encoding)
-            name_encodings = {"names": names, "encodings": encodings}
+
+    name_encodings = {"names": names, "encodings": encodings}
     with encodings_location.open(mode="wb") as f:
         pickle.dump(name_encodings, f)
+        
+        for bounding_box, unknown_encoding in zip(
+        input_face_locations, input_face_encodings
+    ):
+        name = _recognize_face(unknown_encoding, loaded_encodings)
+        if not name:
+            name = "Unknown"
+        print(name, bounding_box)
 
 encode_known_faces()
