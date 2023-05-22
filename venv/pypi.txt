@@ -1,0 +1,4 @@
+https://realpython.com/face-recognition-with-python/
+python -m venv ./venv
+.\venv\Scripts\activate
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
