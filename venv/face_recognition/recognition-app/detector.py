@@ -119,32 +119,7 @@ def _display_face(draw, bounding_box, name):
     """
     Draws bounding boxes around faces, a caption area, and text captions.
     """
-    top, right, ft, text_top),
-        name,
-        fill=TEXT_COLOR,
-    )
-
-
-def validate(model: str = "hog"):
-    """
-    Runs recognize_faces on a set of images with known faces to validate
-    known encodings.
-    """
-    for filepath in Path("validation").rglob("*"):
-        if filepath.is_file():
-            recognize_faces(
-                image_location=str(filepath.absolute()), model=model
-            )
-
-
-if __name__ == "__main__":
-    if args.train:
-        encode_known_faces(model=args.m)
-    if args.validate:
-        validate(model=args.m)
-    if args.test:
-        recognize_faces(image_location=args.f, model=args.m)
-bottom, left = bounding_box
+    top, right, bottom, left = bounding_box
     draw.rectangle(((left, top), (right, bottom)), outline=BOUNDING_BOX_COLOR)
     text_left, text_top, text_right, text_bottom = draw.textbbox(
         (left, bottom), name
