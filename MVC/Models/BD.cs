@@ -11,7 +11,7 @@ namespace MVC.Models
         public static List<Policia> ListarPolicias()
         {
             List<Policia> lista = new List<Policia>();
-            string sql = "SELECT * FROM Policia";
+            string sql = "SELECT * FROM Policias";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 lista = db.Query<Policia>(sql).AsList();
