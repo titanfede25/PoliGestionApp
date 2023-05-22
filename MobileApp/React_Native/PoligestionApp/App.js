@@ -1,11 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  let lista
+  fetch(`http://localhost:3001/47206175`)
+    .then(res => res.json()) 
+    .then(res => {
+        res.Search.forEach(unidad => {
+            lista.push(unidad)
+        })
+    })
   return (
     <View style={styles.container}>
-      <Text>Hoy, Lunes 6/5</Text>
-      <StatusBar style="auto" />
+      <ScrollView>
+        {lista.map((item)=> {
+        return (
+          <View key={item.IdRuta}>
+            <Text>{item.direccionInicial}</Text>
+          </View>
+        )
+        })}
+      </ScrollView>
     </View>
   );
 }
