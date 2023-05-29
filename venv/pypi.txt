@@ -10,4 +10,4 @@ Functions:
   --validate    Validate trained model
   --test        Test the model with an unknown image
   -m {hog,cnn}  Which model to use for training: hog (CPU), cnn (GPU)
-  -f F          Path to an image with an unknown face
+  -f F          Path to an image with an unknown face (Goes after --test)
