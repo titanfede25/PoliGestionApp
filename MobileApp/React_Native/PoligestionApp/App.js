@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, Text, View, Image } from 'react-native';
 import React,{useState, useEffect} from 'react';
+import "@fontsource/krona-one/400.css";
+
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -20,7 +22,12 @@ export default function App() {
         data.map((post) => {
           return (
             <View>
-              <Text style={styles.title}>{post.direccionInicial} - {post.direccionFinal}</Text>
+              
+              <Text style={styles.hora}>{new Date(post.horaInicial).getHours()}:{new Date(post.horaInicial).getMinutes()} - {new Date(post.horaFinal).getHours()}:{new Date(post.horaFinal).getMinutes()}</Text>
+              <div className='padre'>
+              
+              <Text style={styles.title}><View style={styles.SquareShape}></View>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
+              </div>
             </View>
           );
         })
@@ -36,11 +43,33 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor:'#012245',
   },
+
+  hora:{
+    fontSize:30,
+    fontFamily: "Krona One",
+    color: "white",
+  },
+
   title: {
-    fontSize: 20,
+    fontSize: 15,
+    fontFamily: "Krona One",
     fontWeight: "bold",
     color: "white",
-    width: "50%",
-
+    width: "100%",
+    float: 'right',
+    backgroundColor: '#6B7E93', 
+    padding:0, 
+	margin:0,  
   },
+  padre:{
+    width:"80%  ",
+  }, 
+  SquareShape: { 
+    width: 60,
+    height: 60,
+    backgroundColor: '#0076C5',
+    float: 'left'
+  },
+  
 });
+

@@ -1371,6 +1371,11 @@
     find-up "^5.0.0"
     js-yaml "^4.1.0"
 
+"@fontsource/krona-one@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/@fontsource/krona-one/-/krona-one-5.0.1.tgz"
+  integrity sha512-zM4Iv8Y9H5gYe7ALXy9W4GDFKYqgx5e8vPikmR5pFqHlIduagFSbFdAVR58AuWW1T4Xs4jehEvT64sxlpxH++w==
+
 "@gar/promisify@^1.0.1":
   version "1.1.3"
   resolved "https://registry.npmjs.org/@gar/promisify/-/promisify-1.1.3.tgz"
