@@ -20,38 +20,13 @@ export default function App() {
         data.map((post) => {
           return (
             <View>
-              <Text style={styles.title}>{post.longitudInicial} - {post.direccionFinal}</Text>
+              <Text style={styles.title}>{post.direccionInicial} - {post.direccionFinal}</Text>
             </View>
           );
         })
       )}
     </View>
   );
-  
-  
-  
-  
-  
-  
-  
-  
-  /*let lista
-  fetch(`http://localhost:3001/47206175`)
-    .then(res => res.json()) 
-    .then(res => {
-      res.Search.forEach(unidad => {
-        lista.push(unidad)
-        return (
-          <View style={styles.container}>
-            <ScrollView>
-                <View key={unidad.IdRuta}>
-                  <Text>{unidad.direccionInicial}</Text>
-                </View>
-            </ScrollView>
-          </View>
-        );
-      })        
-    })*/
 }
 
 const styles = StyleSheet.create({
@@ -62,8 +37,10 @@ const styles = StyleSheet.create({
     backgroundColor:'#012245',
   },
   title: {
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "bold",
-    color: "white"
+    color: "white",
+    width: "50%",
+
   },
 });
