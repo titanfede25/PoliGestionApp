@@ -18,6 +18,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Image source={require('./assets/logo.PNG')}/>
+	<img src="./assets/logo.PNG">
       {loading ? (<Text>Loading...</Text>) : (
         data.map((post) => {
           return (
