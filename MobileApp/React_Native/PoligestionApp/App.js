@@ -17,8 +17,13 @@ export default function App() {
   }, []);
   return (
     <View style={styles.container}>
-      <Image source={require('./assets/logo.PNG')}/>
-	<img src="./assets/logo.PNG">
+      <ScrollView>
+      <Text style={styles.hoy}>Hoy, Lunes 24/4</Text>
+      <View style={styles.logo}>
+      <Image style={styles.logo} source={require('./assets/logo.PNG')}
+      /><br></br>
+      </View>
+      
       {loading ? (<Text>Loading...</Text>) : (
         data.map((post) => {
           return (
@@ -33,6 +38,7 @@ export default function App() {
           );
         })
       )}
+      </ScrollView>
     </View>
   );
 }
@@ -40,8 +46,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor:'#012245',
   },
 
@@ -59,8 +63,8 @@ const styles = StyleSheet.create({
     width: "100%",
     float: 'right',
     backgroundColor: '#6B7E93', 
-    padding:0, 
-	margin:0,  
+    paddingTop:0,
+    paddingHorizontal:0, 
   },
   padre:{
     width:"80%  ",
@@ -68,8 +72,24 @@ const styles = StyleSheet.create({
   SquareShape: { 
     width: 60,
     height: 60,
+    paddingTop:0,
+    paddingHorizontal:0,
     backgroundColor: '#0076C5',
     float: 'left'
+  },
+  logo: {
+    width: "90%",
+    height: "90%",
+  },
+  hoy: {
+    fontSize: 15,
+    fontFamily: "Krona One",
+    fontWeight: "bold",
+    color: "#a6dced",
+    width: "100%",
+    float: 'right', 
+    paddingTop:0,
+    paddingHorizontal:0, 
   },
   
 });
