@@ -1,8 +1,17 @@
 https://realpython.com/face-recognition-with-python/
-python -m venv ./venv
+
 El Orden Es Obligatorio
+c:
+mkdir poli
+cd poli
+python -m venv ./venv
 .\venv\Scripts\activate
-pip install cmake
+choco install mingw
+pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org cmake
+mkdir repo
+cd repo
+git clone
+cd face_recognition\recognition-app
 pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
 Functions:
   -h, --help    show this help message and exit
@@ -11,3 +20,5 @@ Functions:
   --test        Test the model with an unknown image
   -m {hog,cnn}  Which model to use for training: hog (CPU), cnn (GPU)
   -f F          Path to an image with an unknown face (Goes after --test)
+
+
