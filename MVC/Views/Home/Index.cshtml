@@ -4,7 +4,7 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4" style="color: white;">Listado de Policias</h1><br>
+    <h1 class="display-4" style="color: rgb(0, 0, 0);">Listado de Policias</h1><br>
     <table>
         <tr>
             <th>DNI</th>
@@ -20,7 +20,7 @@
                 <td>@a.Nombre</td>
                 <td>@a.NumeroPlaca</td>
                 <td>@a.Rol</td>
-                <td>@a.FechaNacimiento</td>
+                <td>@(((DateTime)a.FechaNacimiento).ToString("dd/MM/yyyy"))</td>
             </tr>
         }
     </table>

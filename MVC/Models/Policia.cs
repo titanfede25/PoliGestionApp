@@ -59,7 +59,7 @@ namespace MVC.Models
         {
             get
             {
-                return _fechaNacimiento;
+                return _fechaNacimiento.Value.Date;
             }
             set
             {
