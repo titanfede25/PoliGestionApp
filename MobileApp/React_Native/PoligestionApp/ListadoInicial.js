@@ -4,7 +4,7 @@ import React,{useState, useEffect} from 'react';
 import "@fontsource/krona-one/400.css";
 
 
-export default function App() {
+export default function ListadoInicial() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const url = "http://localhost:3001/1";
