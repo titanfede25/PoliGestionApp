@@ -1,35 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
 import React,{useState, useEffect} from 'react';
 import "@fontsource/krona-one/400.css";
 
 
 export default function App() {
-  const [name,setName]=useState('shaun');
-  const [age, setAge]=useState('30');
+  let [password,setPassword]=useState('');
+  let [DNI, setDNI]=useState('');
+  const validar = (DNI, password)=>{
+    
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView>
       
-      <Text>Ingrese su DNI:</Text>
-      <TextInput 
-      multiline
-      keyboardType='numeric'
-      style={styles.input}
-      placeholder= 'DNI'
-      onChangeText={(val) => setAge(val)}/>
+      <TextInput multiline keyboardType='numeric' style={styles.input} placeholder= 'DNI' onChangeText={(val) => setDNI(val)}/>
+  
+      <TextInput multiline style={styles.input} placeholder= 'Contraseña' onChangeText={(val) => setPassword(val)}/>
 
-
-      <Text>Ingrese su contraseña:</Text>
-      <TextInput 
-      multiline
-
-      style={styles.input}
-      placeholder= 'Contraseña'
-      onChangeText={(val) => setName(val)}/>
-
+      <Button title ="Iniciar Sesión" color="black" onPress={()=>{validar(DNI, password)}}></Button>
+      
       </ScrollView>
     </View>
+    
   );
 }
 
