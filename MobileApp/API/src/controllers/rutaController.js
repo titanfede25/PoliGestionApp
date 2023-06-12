@@ -2,7 +2,7 @@ import { Router } from 'express';
 import {getById} from '../services/rutaService.js';
 
 const router = Router();
-router.get ('/', async(req, res)=>{ //:id
+router.get ('/:id', async(req, res)=>{ //:id
 
     let status = 200;
     /*if(req.params.id < 0){
