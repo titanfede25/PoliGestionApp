@@ -9,6 +9,7 @@ namespace MVC.Models
         private string? _rol;
         private DateTime? _fechaNacimiento;
         private string? _password;
+        private int _idpolicia;
         
         public int DNI
         {
@@ -59,7 +60,7 @@ namespace MVC.Models
         {
             get
             {
-                return _fechaNacimiento.Value.Date;
+                return _fechaNacimiento;
             }
             set
             {
@@ -77,6 +78,16 @@ namespace MVC.Models
                 _password = value;
             }
         }
-        
+        public int Idpolicia
+        {
+            get
+            {
+                return _idpolicia;
+            }
+            set
+            {
+                _idpolicia = value;
+            }
+        }
     }
 }
