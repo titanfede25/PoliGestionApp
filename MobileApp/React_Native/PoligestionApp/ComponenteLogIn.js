@@ -6,17 +6,16 @@ import "@fontsource/krona-one/400.css";
 export default function LogIn() {
     let [password,setPassword]=useState('');
     let [DNI, setDNI]=useState('');
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    let url = "http://localhost:3001/policia/";
-    url = url + DNI + "/" + password
+    let [data, setData] = useState([]);
+    let [loading, setLoading] = useState(true);
+    let url = "http://localhost:3001/policia/" + DNI + "/" + password
+      console.log(url)
   
 
     useEffect(() => {
         }, []);
 
-    const validar = (DNI, password)=>{
-
+    const validar = ()=>{
         fetch(url)
         .then((resp) => resp.json())
         .then((json) => setData(json))
@@ -28,8 +27,10 @@ export default function LogIn() {
         data.map((post) => {
           if(!data.nombre){
             alert("Ingreso inválido, intente de nuevo")
+            console.log("no funco")
           }
           else{
+            console.log("funco")
             navigation.navigate('ListadoInicial',{post})
           }
         })      
@@ -43,9 +44,9 @@ export default function LogIn() {
     
         <TextInput multiline style={styles.input} placeholder= 'Contraseña' onChangeText={(val) => setPassword(val)}/>
   
-        <Text>dni: {DNI}, passoword: {password}</Text>
+        <Text>dni: {DNI}, password: {password}</Text>
   
-        <Button title ="Iniciar Sesión" color="black" onPress={()=>{validar(DNI, password)}}></Button>
+        <Button title ="Iniciar Sesión" color="black" onPress={()=>{validar()}}></Button>
         
         </ScrollView>
 

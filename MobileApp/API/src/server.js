@@ -8,7 +8,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("", router)
-/*por ahora abrimos http://localhost:19006/  */
 app.listen (port, ()=>{
     console.log(`EJEMPLO ${port}`)
 })
