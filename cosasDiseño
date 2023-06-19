@@ -1,0 +1,47 @@
+input
+{
+    width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+	border:1px solid black;
+	background-color: #C0C8D1;
+    border-color: #777;
+    border-radius: 10%;
+}
+::placeholder{
+    color: #6C7076;
+}
+button{
+    width: 300px;
+    max-width: 100%;
+    background-color: #0076C5;
+    border-color: #0076C5;
+    border-radius: 10%;
+    box-shadow: 0 2px 4px #005b98;
+    cursor: pointer;
+}
+p
+{
+    width: 300px;
+    max-width: 100%;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color:white;
+}
+h1{
+    font-family: "Lucida Console", "Courier New", monospace;
+    color:white;
+}
+html{
+    background-color: #012245;
+}
+h2{
+    color:0076C5;
+    text-shadow: 1px 0 #000000, -1px 0 #000000, 0 1px #000000, 0 -1px #000000,
+               1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+}
+h3{
+    color:white;
+    text-shadow: 1px 0 #000000, -1px 0 #000000, 0 1px #000000, 0 -1px #000000,
+               1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+}
