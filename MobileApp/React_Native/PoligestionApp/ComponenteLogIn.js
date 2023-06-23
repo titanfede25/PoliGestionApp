@@ -7,9 +7,7 @@ export default function LogIn() {
     let [password,setPassword]=useState('');
     let [DNI, setDNI]=useState('');
     let [data, setData] = useState([]);
-    let [loading, setLoading] = useState(true);
-    let url = "http://localhost:3001/policia/" + DNI + "/" + password
-      console.log(url)
+    let url = "http://localhost:3001/getPoli/" + DNI + "/" + password
   
 
     useEffect(() => {
@@ -18,25 +16,22 @@ export default function LogIn() {
     const validar = ()=>{
         fetch(url)
         .then((resp) => resp.json())
-        .then((json) => setData(json))
+        .then((json) => {
+            setData(json); console.log(json);
+                if(!json.nombre){
+                  alert("Ingreso inválido, intente de nuevo")
+                  console.log("no funco")
+                }
+                else{
+                  console.log("funco")
+                  /*navigation.navigate('ListadoInicial',{json}) ACA ARRANCA LA PASADA DE  INFO*/
+                }    
+          }
+        )
         .catch((error) => console.error(error))
-        .finally(() => setLoading(false));
+        }
 
-
-      {loading ? (<Text>Loading...</Text>) : (
-        data.map((post) => {
-          if(!data.nombre){
-            alert("Ingreso inválido, intente de nuevo")
-            console.log("no funco")
-          }
-          else{
-            console.log("funco")
-            navigation.navigate('ListadoInicial',{post})
-          }
-        })      
-      )}
-    }
-  
+    
     return (
         <ScrollView>
         
@@ -49,8 +44,6 @@ export default function LogIn() {
         <Button title ="Iniciar Sesión" color="black" onPress={()=>{validar()}}></Button>
         
         </ScrollView>
-
-      
     );
   }
 

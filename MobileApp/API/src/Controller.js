@@ -6,9 +6,8 @@ const router = Router();
     const object            = await getById(req.params.id, req.params.dia);
     res.status(200).send(object);
 })*/
-router.get (':dni/:contraseña', async(req, res)=>{ 
-    console.log(req.params.dni)
-    const object            = await getPolicia(req.params.dni, req.params.contraseña);
+router.get('/getPoli/:dni/:contrasena', async(req, res)=>{ 
+    const object            = await getPolicia(req.params.dni, req.params.contrasena);
     res.status(200).send(object);
 })
 export default router;

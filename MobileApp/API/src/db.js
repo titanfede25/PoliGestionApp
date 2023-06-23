@@ -1,7 +1,5 @@
 import 'dotenv/config'
 
-console.log(process.env.SERVER)
-
 const config = {
     user: process.env.USER,
     password: process.env.PASSWORD,
