@@ -4,48 +4,48 @@ import React,{useState, useEffect} from 'react';
 import "@fontsource/krona-one/400.css";
 
 export default function LogIn() {
-    let [password,setPassword]=useState('');
-    let [DNI, setDNI]=useState('');
-    let [data, setData] = useState([]);
-    let url = "http://localhost:3001/getPoli/" + DNI + "/" + password
-  
-
-    useEffect(() => {
-        }, []);
+    let [password, setPassword] = useState('');
+    let [DNI, setDNI]           = useState('');
+    let [data, setData]         = useState([]);
+    let [ERROR, setERROR]       = useState('');
+    let url1 = "http://localhost:3001/getPoli/" + DNI + "/" + password;  
+    useEffect(() => {}, []);
 
     const validar = ()=>{
-        fetch(url)
+        fetch(url1)
         .then((resp) => resp.json())
         .then((json) => {
             setData(json); console.log(json);
-                if(!json.nombre){
-                  alert("Ingreso inválido, intente de nuevo")
-                  console.log("no funco")
-                }
-                else{
-                  console.log("funco")
-                  /*navigation.navigate('ListadoInicial',{json}) ACA ARRANCA LA PASADA DE  INFO*/
-                }    
-          }
-        )
-        .catch((error) => console.error(error))
-        }
+            if(!json.idPolicia){
+                console.log("no funco");
+            }
+            else{
+                console.log("funco");
+                setERROR("");
+                /*navigation.navigate('ListadoInicial',{json});*/
+            }    
+        })
+        .catch((error) => ERROR = setERROR("Ingreso inválido"))
+    }
 
-    
     return (
         <ScrollView>
-        
+
+        <Text>{ERROR}</Text>
+
+        <Text>Ingrese su DNI: {DNI}</Text>
+
         <TextInput multiline keyboardType='numeric' style={styles.input} placeholder= 'DNI' onChangeText={(val) => setDNI(val)}/>
+
+        <Text>Ingrese su contraseña: {password}</Text>
     
         <TextInput multiline style={styles.input} placeholder= 'Contraseña' onChangeText={(val) => setPassword(val)}/>
-  
-        <Text>dni: {DNI}, password: {password}</Text>
   
         <Button title ="Iniciar Sesión" color="black" onPress={()=>{validar()}}></Button>
         
         </ScrollView>
     );
-  }
+}
 
 const styles = StyleSheet.create({
     container:{
