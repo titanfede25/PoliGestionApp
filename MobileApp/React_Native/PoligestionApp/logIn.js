@@ -22,7 +22,7 @@ export default function LogIn({navigation}) {
             }
             else{
                 setERROR("");
-                navigation.navigate('Preview',{json});
+                navigation.navigate('Preview',{json: json});
             }    
         })
         .catch((error) => ERROR = setERROR("Ingreso inválido"))

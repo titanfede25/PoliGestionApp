@@ -4,44 +4,31 @@ import React,{useState, useEffect} from 'react';
 import "@fontsource/krona-one/400.css";
 
 
-export default function ListadoInicial() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const url = "http://localhost:3001/1";
-  useEffect(() => {
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+export default function ListadoInicial({route, navigation}) {
+  const { json } = route.params;
   return (
     <View style={styles.container}>
       <ScrollView>
-      <Text style={styles.hoy}>Hoy, Lunes 24/4</Text>
-      <View style={styles.logo}>
-      <Image style={styles.logo} source={require('./assets/logo.PNG')}
-      /><br></br>
-      </View>
-      
-      {loading ? (<Text>Loading...</Text>) : (
-        data.map((post) => {
-          return (
-            <View>
-              
-              <Text style={styles.hora}>{new Date(post.horaInicial).getHours()}:{new Date(post.horaInicial).getMinutes()} - {new Date(post.horaFinal).getHours()}:{new Date(post.horaFinal).getMinutes()}</Text>
-              <div className='padre'>
-              
-              <Text style={styles.title}><View style={styles.SquareShape}></View>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
-              </div>
-            </View>
-          );
-        })
-      )}
+        <Text style={styles.hoy}>Hoy, Lunes 24/4</Text>
+        <View style={styles.logo}>
+          <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
+        </View>   
+      {json.rutas.map((post) => {
+        return (
+          <View>
+            <Text style={styles.hora}>{new Date(post.horaInicial).getHours()}:{new Date(post.horaInicial).getMinutes()} - {new Date(json.rutas[0].horaFinal).getHours()}:{new Date(json.rutas[0].horaFinal).getMinutes()}</Text>
+            <div className='padre'>
+            <Text style={styles.title}><View style={styles.SquareShape}></View>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
+            </div>
+          </View>
+        );
+      })}
       </ScrollView>
-    </View>
+   </View>
+   
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
