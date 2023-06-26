@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4" style="color: rgb(0, 0, 0);">Listado de Policias</h1><br>
+    
+    <button type="button"><a href="AgregarPolicia.cshtml"></a></button>
+    <table>
+        <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Numero Placa</th>
+            <th>Rol</th>
+            <th>Fecha Nacimiento</th>
+        </tr>
+        @foreach(Policia a in ViewBag.Lista) 
+        {
+            <tr>
+                <td>@a.DNI</td>
+                <td>@a.Nombre</td>
+                <td>@a.NumeroPlaca</td>
+                <td>@a.Rol</td>
+                <td>@(((DateTime)a.FechaNacimiento).ToString("dd/MM/yyyy"))</td>
+            </tr>
+        }
+    </table>    
+</div>

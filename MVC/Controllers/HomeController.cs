@@ -13,13 +13,18 @@ public class HomeController : Controller
         _logger = logger;
     }
 
-    public IActionResult Index(Policia Pol, int idPolicia)
+    public IActionResult ListadoPolicias(Policia Pol, int idPolicia)
     {
         ViewBag.Lista = BD.ListarPolicias(); 
         return View();
     }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
     public IActionResult AgregarPolicia(Policia Pol){ 
-        BD.EliminarPolicia(Pol);
+        BD.AgregarPolicia(Pol);
         return View();
     }
 
