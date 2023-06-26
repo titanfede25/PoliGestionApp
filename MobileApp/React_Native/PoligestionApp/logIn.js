@@ -3,7 +3,8 @@ import { ScrollView, StyleSheet, Text, View, Image, TextInput, Button, Touchable
 import React,{useState, useEffect} from 'react';
 import "@fontsource/krona-one/400.css";
 
-export default function LogIn() {
+
+export default function LogIn({navigation}) {
     let [password, setPassword] = useState('');
     let [DNI, setDNI]           = useState('');
     let [data, setData]         = useState([]);
@@ -20,16 +21,15 @@ export default function LogIn() {
                 console.log("no funco");
             }
             else{
-                console.log("funco");
                 setERROR("");
-                /*navigation.navigate('ListadoInicial',{json});*/
+                navigation.navigate('Preview',{json});
             }    
         })
         .catch((error) => ERROR = setERROR("Ingreso inválido"))
     }
 
     return (
-        <ScrollView>
+        <ScrollView Style={styles.container}>
 
         <Text>{ERROR}</Text>
 
@@ -53,6 +53,7 @@ const styles = StyleSheet.create({
       backgroundColor:'#fff',
       alignItems: 'center',
       justifyContent: 'center',
+      width: '200px'
     },
     input:{
       borderWidth: 1,
