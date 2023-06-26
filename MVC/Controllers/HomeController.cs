@@ -18,8 +18,8 @@ public class HomeController : Controller
         ViewBag.Lista = BD.ListarPolicias(); 
         return View();
     }
-    public IActionResult AgregarPolicia(int idPolicia){ 
-        ViewBag.idPolicia = idPolicia;
+    public IActionResult AgregarPolicia(Policia Pol){ 
+        BD.EliminarPolicia(Pol);
         return View();
     }
 
