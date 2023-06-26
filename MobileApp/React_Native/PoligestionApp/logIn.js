@@ -28,38 +28,67 @@ export default function LogIn({navigation}) {
         .catch((error) => ERROR = setERROR("Ingreso inválido"))
     }
 
-    return (
-        <ScrollView Style={styles.container}>
+   return (
+        <View style={styles.container}>
 
-        <Text>{ERROR}</Text>
+        <ScrollView>
 
-        <Text>Ingrese su DNI: {DNI}</Text>
+        <Text style={styles.Text}>{ERROR}</Text>
 
-        <TextInput multiline keyboardType='numeric' style={styles.input} placeholder= 'DNI' onChangeText={(val) => setDNI(val)}/>
+        <Text style={styles.Text}>Ingrese su DNI: {DNI}</Text>
 
-        <Text>Ingrese su contraseña: {password}</Text>
+        <TextInput style={styles.TextInput} multiline keyboardType='numeric'  placeholder="DNI"    placeholderTextColor="#6C7076" onChangeText={(val) => setDNI(val)}/>
+
+        <Text style={styles.Text}>Ingrese su contraseña: {password}</Text>
     
-        <TextInput multiline style={styles.input} placeholder= 'Contraseña' onChangeText={(val) => setPassword(val)}/>
+        <TextInput  style={styles.TextInput}  multiline  placeholder="Contraseña" placeholderTextColor="#6C7076" onChangeText={(val) => setPassword(val)}/>~{"\n"}~{"\n"}~{"\n"}
   
-        <Button title ="Iniciar Sesión" color="black" onPress={()=>{validar()}}></Button>
-        
+        <TouchableOpacity style={styles.button} title ="Iniciar Sesión" onPress={()=>{validar()}}>Iniciar Sesion</TouchableOpacity>
+
         </ScrollView>
+
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container:{
       flex:1,
-      backgroundColor:'#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '200px'
+      backgroundColor:'#012245',
     },
-    input:{
+    TextInput:{
       borderWidth: 1,
-      borderColor:'#777',
+      width: '300px',
+      alignSelf: 'center',
       padding: 8,
       margin: 10,
-      width:200,
-    }
+      border: '1px solid black',
+      backgroundColor: '#C0C8D1',
+      borderColor:'#777',
+      borderRadius: '2em',
+    },
+
+    button:{
+        width: '300px',
+        maxWidth: '200%',
+        height: '50px',
+        alignSelf: 'center',  
+        justifyContent: 'center',
+        backgroundColor: '#0076C5',
+        borderColor: '#0076C5',
+        borderRadius: '2em',
+        boxShadow: '0 2px 4px #005b98',
+        color: 'white',
+        textAlign: 'center',
+        fontFamily: "Krona One",
+    },
+    Text:{
+    alignSelf: 'center',
+    width: '300px',
+    maxWidth: '100%',
+    fontSize: 15,
+    fontFamily: "Krona One",
+    fontWeight: "bold",
+    color: 'white',
+    },
   })
