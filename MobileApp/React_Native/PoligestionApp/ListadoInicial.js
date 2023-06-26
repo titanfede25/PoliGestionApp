@@ -6,6 +6,9 @@ import "@fontsource/krona-one/400.css";
 
 export default function ListadoInicial({route, navigation}) {
   const { json } = route.params;
+  const goBack = () => {
+    navigation.goBack();
+  };//no funciona, agregar        <Button title="Volver" onPress={goBack}/> en scrollview
   return (
     <View style={styles.container}>
       <ScrollView>

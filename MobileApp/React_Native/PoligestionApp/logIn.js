@@ -5,8 +5,8 @@ import "@fontsource/krona-one/400.css";
 
 
 export default function LogIn({navigation}) {
-    let [password, setPassword] = useState('');
-    let [DNI, setDNI]           = useState('');
+    let [password, setPassword] = useState('1234');
+    let [DNI, setDNI]           = useState('47206175');
     let [data, setData]         = useState([]);
     let [ERROR, setERROR]       = useState('');
     let url1 = "http://localhost:3001/getPoli/" + DNI + "/" + password;  
@@ -31,15 +31,15 @@ export default function LogIn({navigation}) {
    return (
         <View style={styles.container}>
 
-        <ScrollView>
+        <ScrollView >
 
         <Text style={styles.Text}>{ERROR}</Text>
 
-        <Text style={styles.Text}>Ingrese su DNI: {DNI}</Text>
+        <Text style={styles.Text}>Ingrese su DNI:</Text>
 
         <TextInput style={styles.TextInput} multiline keyboardType='numeric'  placeholder="DNI"    placeholderTextColor="#6C7076" onChangeText={(val) => setDNI(val)}/>
 
-        <Text style={styles.Text}>Ingrese su contraseña: {password}</Text>
+        <Text style={styles.Text}>Ingrese su contraseña:</Text>
     
         <TextInput  style={styles.TextInput}  multiline  placeholder="Contraseña" placeholderTextColor="#6C7076" onChangeText={(val) => setPassword(val)}/>~{"\n"}~{"\n"}~{"\n"}
   

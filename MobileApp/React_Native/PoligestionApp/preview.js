@@ -12,20 +12,10 @@ export default function Preview({route, navigation}) {
      <Text onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
      <Text>Empezar en:</Text> 
      <Text>{json.rutas[0].direccionInicial}</Text>
-     <Text>Horario: {/*hora (*/json.rutas[0].horaInicial/*)*/}-{json.rutas[0].horaFinal}</Text>
+     <Text>Horario: {new Date(json.rutas[0].horaInicial).getHours()}:{new Date(json.rutas[0].horaInicial).getMinutes()}-{new Date(json.rutas[0].horaFinal).getHours()}:{new Date(json.rutas[0].horaFinal).getMinutes()}</Text>
      </View>
     );
 }
-
-/*export function hora (hora){
-  if (hora.getHours() < 10){
-    let modified = "0" + hora.getHours()
-    return modified
-  } 
-  else{
-    return hora.getHours()
-  }
-}*/
 
 const styles = StyleSheet.create({
     container:{
