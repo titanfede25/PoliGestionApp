@@ -12,14 +12,14 @@ export default function ListadoInicial({route, navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={styles.hoy}>Hoy, Lunes 24/4</Text>
+      <Text style={styles.hoy}>Hoy, Lunes 24/4</Text>
         <View style={styles.logo}>
           <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
         </View>   
       {json.rutas.map((post) => {
         return (
           <View>
-            <Text style={styles.hora}>{new Date(post.horaInicial).getHours()}:{new Date(post.horaInicial).getMinutes()} - {new Date(json.rutas[0].horaFinal).getHours()}:{new Date(json.rutas[0].horaFinal).getMinutes()}</Text>
+            <Text style={styles.hora}>{new Date(post.horaInicial.replace('Z','')).getHours()}:{new Date(post.horaInicial.replace('Z','')).getMinutes()} - {new Date(post.horaFinal.replace('Z','')).getHours()}:{new Date(post.horaFinal.replace('Z','')).getMinutes()}</Text>
             <div className='padre'>
             <Text style={styles.title}><View style={styles.SquareShape}></View>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
             </div>

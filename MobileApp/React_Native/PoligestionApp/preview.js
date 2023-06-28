@@ -7,28 +7,33 @@ import "@fontsource/krona-one/400.css";
 export default function Preview({route, navigation}) {
   const { json } = route.params;
   let date = new Date();
-    return (
-    <View style={styles.container}>
+    let result;
 
-     <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
-     <Text style={styles.detalles}>Detalles:</Text>
-     <Text style={styles.textito}>Empezar en:</Text> 
-     <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
-     <Text style={styles.textito}>Horario: {/*hora (*/json.rutas[0].horaInicial/*)*/}-{json.rutas[0].horaFinal}{"\n"}{"\n"}{"\n"}</Text>  
-     <TouchableOpacity style={styles.button} title ="Iniciar Sesión" onPress={()=>{validar()}}>Ir Mapa</TouchableOpacity>
-     </View>
-    );
+    if (json.rutas.length > 0) 
+      result = (
+        <View style={styles.container}>
+         <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
+         
+         <Text style={styles.detalles}>Detalles:</Text>
+         <Text style={styles.textito}>Empezar en:</Text> 
+         <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
+         <Text style={styles.textito}>Horario: {new Date(json.rutas[0].horaInicial.replace('Z','')).getHours()}:{new Date (json.rutas[0].horaInicial.replace('Z','')).getMinutes()}-{new Date (json.rutas[json.rutas.length-1].horaFinal.replace('Z','')).getHours()}:{new Date (json.rutas[json.rutas.length-1].horaFinal.replace('Z','')).getMinutes()}</Text><br/>  
+         <TouchableOpacity title ="Iniciar Sesión"><Text style={styles.button} >Ir Mapa</Text></TouchableOpacity>
+         </View>
+        );
+    else
+    result = (
+      <View style={styles.container}>
+       <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
+       
+       <Text style={styles.detalles}>NO HAY DATOS:</Text>
+     
+       </View>
+      );
+
+    return result;
 }
 
-/*export function hora (hora){
-  if (hora.getHours() < 10){
-    let modified = "0" + hora.getHours()
-    return modified
-  } 
-  else{
-    return hora.getHours()
-  }
-}*/
 
 const styles = StyleSheet.create({
     container:{

@@ -33,6 +33,7 @@ export default function LogIn({navigation}) {
 
         <ScrollView >
 
+
         <Text style={styles.Text}>{ERROR}</Text>
 
         <Text style={styles.Text}>Ingrese su DNI:</Text>
@@ -41,9 +42,11 @@ export default function LogIn({navigation}) {
 
         <Text style={styles.Text}>Ingrese su contraseña:</Text>
     
-        <TextInput  style={styles.TextInput}  multiline  placeholder="Contraseña" placeholderTextColor="#6C7076" onChangeText={(val) => setPassword(val)}/>~{"\n"}~{"\n"}~{"\n"}
+        <TextInput  style={styles.TextInput}  multiline  placeholder="Contraseña" placeholderTextColor="#6C7076" onChangeText={(val) => setPassword(val)}/><br/>
   
-        <TouchableOpacity style={styles.button} title ="Iniciar Sesión" onPress={()=>{validar()}}>Iniciar Sesion</TouchableOpacity>
+        <TouchableOpacity title ="Iniciar Sesión" onPress={()=>{validar()}}><Text style={styles.button}>Iniciar Sesion</Text></TouchableOpacity>
+
+
 
         </ScrollView>
 

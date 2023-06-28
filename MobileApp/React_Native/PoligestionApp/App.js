@@ -1,6 +1,6 @@
 import React from 'react';
 import LogIn from './logIn';
-import ListadoInicial from './listadoInicial';
+import ListadoInicial from './ListadoInicial';
 import Preview from './preview';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
