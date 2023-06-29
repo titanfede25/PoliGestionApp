@@ -6,14 +6,12 @@ import "@fontsource/krona-one/400.css";
 
 export default function ListadoInicial({route, navigation}) {
   const { json } = route.params;
-  const goBack = () => {
-    navigation.goBack();
-  };//no funciona, agregar        <Button title="Volver" onPress={goBack}/> en scrollview
+  let date = new Date();
 
   return (
     <View style={styles.container}>
       <ScrollView>
-      <Text style={styles.hoy}>Hoy, Lunes 24/4</Text>
+      <Text style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
         <View style={styles.logo}>
           <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
         </View>   
