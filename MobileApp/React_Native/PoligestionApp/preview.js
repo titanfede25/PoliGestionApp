@@ -7,31 +7,45 @@ import "@fontsource/krona-one/400.css";
 export default function Preview({route, navigation}) {
   const { json } = route.params;
   let date = new Date();
-    let result;
+  let result;
+  let horasInicial    = new Date(json.rutas[0].horaInicial.replace('Z','')).getHours();
+  if (horasInicial < 10){
+    horasInicial = "0" + horasInicial;
+  }
+  let minutosInicial  = new Date(json.rutas[0].horaInicial.replace('Z','')).getMinutes();
+  if (minutosInicial < 10){
+    minutosInicial = "0" + minutosInicial;
+  }
+  let horasFinal      = new Date(json.rutas[json.rutas.length-1].horaFinal.replace('Z','')).getHours();
+  if (horasFinal < 10){
+    horasFinal = "0" + horasFinal;
+  }
+  let minutosFinal    = new Date(json.rutas[json.rutas.length-1].horaFinal.replace('Z','')).getMinutes();
+  if (minutosFinal < 10){
+    minutosFinal = "0" + minutosFinal;
+  }
 
-    if (json.rutas.length > 0) 
-      result = (
-        <View style={styles.container}>
-         <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
-         
-         <Text style={styles.detalles}>Detalles:</Text>
-         <Text style={styles.textito}>Empezar en:</Text> 
-         <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
-         <Text style={styles.textito}>Horario: {new Date(json.rutas[0].horaInicial.replace('Z','')).getHours()}:{new Date (json.rutas[0].horaInicial.replace('Z','')).getMinutes()}-{new Date (json.rutas[json.rutas.length-1].horaFinal.replace('Z','')).getHours()}:{new Date (json.rutas[json.rutas.length-1].horaFinal.replace('Z','')).getMinutes()}</Text><br/>  
-         <TouchableOpacity title ="Iniciar Sesión"><Text style={styles.button} >Ir Mapa</Text></TouchableOpacity>
-         </View>
-        );
-    else
+  if (json.rutas.length > 0){
     result = (
       <View style={styles.container}>
-       <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
-       
-       <Text style={styles.detalles}>NO HAY DATOS:</Text>
-     
-       </View>
-      );
-
-    return result;
+        <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
+        <Text style={styles.detalles}>Detalles:</Text>
+        <Text style={styles.textito}>Empezar en:</Text> 
+        <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
+        <Text style={styles.textito}>Horario: {horasInicial}:{minutosInicial} - {horasFinal}:{minutosFinal} hs</Text><br/>  
+        <TouchableOpacity title ="mapa"><Text style={styles.button} >Ir Mapa</Text></TouchableOpacity>
+      </View>
+    );
+  }
+  else{
+    result = (
+      <View style={styles.container}>
+        <Text style={styles.titulo}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
+        <Text style={styles.detalles}>NO HAY DATOS</Text>
+      </View>
+    );
+  }
+  return result;
 }
 
 

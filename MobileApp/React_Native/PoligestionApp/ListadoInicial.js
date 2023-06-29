@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View, Image } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React,{useState, useEffect} from 'react';
 import "@fontsource/krona-one/400.css";
 
@@ -9,6 +9,7 @@ export default function ListadoInicial({route, navigation}) {
   const goBack = () => {
     navigation.goBack();
   };//no funciona, agregar        <Button title="Volver" onPress={goBack}/> en scrollview
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -17,18 +18,36 @@ export default function ListadoInicial({route, navigation}) {
           <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
         </View>   
       {json.rutas.map((post) => {
+        let horasInicial    = new Date(post.horaInicial.replace('Z','')).getHours();
+        if (horasInicial < 10){
+          horasInicial = "0" + horasInicial;
+        }
+        let minutosInicial  = new Date(post.horaInicial.replace('Z','')).getMinutes();
+        if (minutosInicial < 10){
+          minutosInicial = "0" + minutosInicial;
+        }
+        let horasFinal      = new Date(post.horaFinal.replace('Z','')).getHours();
+        if (horasFinal < 10){
+          horasFinal = "0" + horasFinal;
+        }
+        let minutosFinal    = new Date(post.horaFinal.replace('Z','')).getMinutes();
+        if (minutosFinal < 10){
+          minutosFinal = "0" + minutosFinal;
+        }
+        let IdRuta="id" + post.IdRuta;
+
         return (
-          <View>
-            <Text style={styles.hora}>{new Date(post.horaInicial.replace('Z','')).getHours()}:{new Date(post.horaInicial.replace('Z','')).getMinutes()} - {new Date(post.horaFinal.replace('Z','')).getHours()}:{new Date(post.horaFinal.replace('Z','')).getMinutes()}</Text>
+          <View key={IdRuta}>
+            <Text style={styles.hora}>{horasInicial}:{minutosInicial} - {horasFinal}:{minutosFinal} hs</Text>
             <div className='padre'>
             <Text style={styles.title}><View style={styles.SquareShape}></View>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
             </div>
           </View>
         );
       })}
+      <TouchableOpacity title ="volver" onPress={()=>navigation.goBack()}><Text style={styles.button} >Volver</Text></TouchableOpacity>
       </ScrollView>
    </View>
-   
   );
 }
 
