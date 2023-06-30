@@ -11,10 +11,10 @@ export default function ListadoInicial({route, navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView>
+      <View style={styles.logo}>
+        <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
+      </View>   
       <Text style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
-        <View style={styles.logo}>
-          <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
-        </View>   
       {json.rutas.map((post) => {
         let horasInicial    = new Date(post.horaInicial.replace('Z','')).getHours();
         if (horasInicial < 10){
@@ -44,6 +44,7 @@ export default function ListadoInicial({route, navigation}) {
         );
       })}
       <TouchableOpacity title ="volver" onPress={()=>navigation.goBack()}><Text style={styles.button} >Volver</Text></TouchableOpacity>
+      <TouchableOpacity title ="mapa"><Text style={styles.button} >Ir Mapa</Text></TouchableOpacity>
       </ScrollView>
    </View>
   );
@@ -85,8 +86,11 @@ const styles = StyleSheet.create({
     float: 'left'
   },
   logo: {
-    width: "90%",
-    height: "90%",
+    alignSelf: 'center',  
+    justifyContent: 'center',
+    width: "70%",
+    height: "70%",
+
   },
   hoy: {
     fontSize: 15,
