@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, useWindowDimensions } from 'react-native';
 import React,{useState, useEffect} from 'react';
+
 import "@fontsource/krona-one/400.css";
 
 
 export default function Preview({route, navigation}) {
+  const window = useWindowDimensions();
   const { json } = route.params;
   let date = new Date();
   let result;
@@ -28,12 +30,15 @@ export default function Preview({route, navigation}) {
   if (json.rutas.length > 0){
     result = (
       <View style={styles.container}>
+        <div style={styles.LogoPadre}>
+        <Image /*{window.width}*/ source={require('./assets/logo.PNG')}/>
+        </div>
         <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
         <Text style={styles.detalles}>Detalles:</Text>
         <Text style={styles.textito}>Empezar en:</Text> 
         <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
         <Text style={styles.textito}>Horario: {horasInicial}:{minutosInicial} - {horasFinal}:{minutosFinal} hs</Text><br/>  
-        <TouchableOpacity title ="mapa"><Text style={styles.button} >Ir Mapa</Text></TouchableOpacity>
+        <TouchableOpacity title ="mapa"><Text style={[styles.button, styles.textoboton]} >Ir Mapa</Text></TouchableOpacity>
       </View>
     );
   }
@@ -65,10 +70,10 @@ const styles = StyleSheet.create({
     },
     titulo:{
     textAlign: 'center',
-    fontSize: 60,
+    fontSize: '30px',
     fontFamily: "Krona One",
     fontWeight: "bold",
-    color: "#a6dced",
+    color: "#0076C5",
     width: "100%",
     float: 'right', 
     paddingTop:0,
@@ -100,8 +105,25 @@ const styles = StyleSheet.create({
       borderColor: '#0076C5',
       borderRadius: '2em',
       boxShadow: '0 2px 4px #005b98',
-      color: 'white',
-      textAlign: 'center',
-      fontFamily: "Krona One",
   },
+  textoboton:{
+    width: '250px',
+    maxWidth: '300%',
+    height: '100%',
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: "Krona One",
+    fontSize:'150%',
+  },
+  logo: {
+    alignSelf: 'center',  
+    justifyContent: 'center',
+    width: "70%",
+    height: "70%",
+
+  },
+  LogoPadre:{
+    width: "90%",
+    height: "90%",
+  }
   })
