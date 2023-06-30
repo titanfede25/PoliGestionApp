@@ -33,6 +33,7 @@ export default function LogIn({navigation}) {
 
         <ScrollView >
 
+        <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
 
         <Text style={styles.Text}>{ERROR}</Text>
 
@@ -94,4 +95,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: 'white',
     },
+    logo: {
+        alignSelf: 'center',  
+        justifyContent: 'center',
+        width: "70%",
+        height: "70%",
+    
+      },
   })
