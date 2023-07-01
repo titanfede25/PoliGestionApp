@@ -11,10 +11,9 @@ export default function ListadoInicial({route, navigation}) {
   return (
     <View style={styles.container}>
       <ScrollView>
-      <View style={styles.logo}>
-        <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
-      </View>   
-      <Text style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
+        
+      <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>  
+      <Text style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text> 
       {json.rutas.map((post) => {
         let horasInicial    = new Date(post.horaInicial.replace('Z','')).getHours();
         if (horasInicial < 10){
@@ -37,14 +36,16 @@ export default function ListadoInicial({route, navigation}) {
         return (
           <View key={IdRuta}>
             <Text style={styles.hora}>{horasInicial}:{minutosInicial} - {horasFinal}:{minutosFinal} hs</Text>
-            <div className='padre'>
-            <Text style={styles.title}><View style={styles.SquareShape}></View>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
-            </div>
+
+            
+            <View style={styles.contenedorLista}>
+              <View style={styles.SquareShape}></View>
+              <Text style={styles.title}>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
+            </View>
           </View>
         );
       })}
       <TouchableOpacity title ="volver" onPress={()=>navigation.goBack()}><Text style={styles.button} >Volver</Text></TouchableOpacity>
-      <TouchableOpacity title ="mapa"><Text style={styles.button} >Ir Mapa</Text></TouchableOpacity>
       </ScrollView>
    </View>
   );
@@ -64,12 +65,12 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 15,
+    fontSize: "100%",
     fontFamily: "Krona One",
     fontWeight: "bold",
     color: "white",
     width: "100%",
-    float: 'right',
+    alignItems:'flex-end',
     backgroundColor: '#6B7E93', 
     paddingTop:0,
     paddingHorizontal:0, 
@@ -78,30 +79,35 @@ const styles = StyleSheet.create({
     width:"80%  ",
   }, 
   SquareShape: { 
-    width: 60,
-    height: 60,
+    width: "60px",
+    height: "auto",
     paddingTop:0,
+    alignItems:'flex-start',
     paddingHorizontal:0,
     backgroundColor: '#0076C5',
-    float: 'left'
   },
   logo: {
     alignSelf: 'center',  
+    resizeMode:'contain',
     justifyContent: 'center',
-    width: "70%",
-    height: "70%",
-
+    width: "200px",
+    height: "200px",
   },
   hoy: {
-    fontSize: 15,
+    fontSize: "200%",
     fontFamily: "Krona One",
     fontWeight: "bold",
     color: "#a6dced",
+    textAlign: 'center',
     width: "100%",
     float: 'right', 
     paddingTop:0,
     paddingHorizontal:0, 
   },
+  contenedorLista:{
+    flexDirection: 'row',
+  }
   
 });
+
 
