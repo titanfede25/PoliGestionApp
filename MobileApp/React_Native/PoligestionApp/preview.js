@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 import React,{useState, useEffect} from 'react';
-
 import "@fontsource/krona-one/400.css";
 
 
 export default function Preview({route, navigation}) {
-  const window = useWindowDimensions();
   const { json } = route.params;
+  console.log(json);
   let date = new Date();
   let result;
   let horasInicial    = new Date(json.rutas[0].horaInicial.replace('Z','')).getHours();
@@ -30,11 +29,20 @@ export default function Preview({route, navigation}) {
   if (json.rutas.length > 0){
     result = (
       <View style={styles.container}>
-        <div style={styles.LogoPadre}>
-        <Image /*{window.width}*/ source={require('./assets/logo.PNG')}/>
-        </div>
+        
+        <Text style={styles.Puntito}>.</Text>
+        <Text style={styles.Puntito}>.</Text>
+        <Image style={styles.logo} source={require('./assets/logo.PNG')}/>
+        <Text style={styles.Puntito}>.</Text>
+        <Text style={styles.Puntito}>.</Text>
+        <Text style={styles.Puntito}>.</Text>
+
+
+        
         <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
+        <Text style={styles.Puntito}>.</Text>
         <Text style={styles.detalles}>Detalles:</Text>
+        <Text style={styles.Puntito}>.</Text>
         <Text style={styles.textito}>Empezar en:</Text> 
         <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
         <Text style={styles.textito}>Horario: {horasInicial}:{minutosInicial} - {horasFinal}:{minutosFinal} hs</Text><br/>  
@@ -58,8 +66,8 @@ const styles = StyleSheet.create({
     container:{
       flex:1,
       backgroundColor:'#012245',
-      alignItems: 'center',
-      justifyContent: 'center',
+      width:'100vw',
+      height:'100vh',
     },
     input:{
       borderWidth: 1,
@@ -117,14 +125,18 @@ const styles = StyleSheet.create({
   },
   logo: {
     alignSelf: 'center',  
+    resizeMode:'contain',
     justifyContent: 'center',
-    width: "70%",
-    height: "70%",
+    width: "200px",
+    height: "200px",
 
   },
   LogoPadre:{
     width: "90%",
     height: "90%",
+  },
+  Puntito:{
+    color:"#012245",
   }
   })
 
