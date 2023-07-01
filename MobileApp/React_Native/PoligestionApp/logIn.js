@@ -28,12 +28,14 @@ export default function LogIn({navigation}) {
         .catch((error) => ERROR = setERROR("Ingreso inválido"))
     }
 
+
+
    return (
         <View style={styles.container}>
 
         <ScrollView >
 
-        <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>
+        <Image style={styles.logo} source={require('./assets/logo.PNG')}/>
 
         <Text style={styles.Text}>{ERROR}</Text>
 
@@ -45,7 +47,7 @@ export default function LogIn({navigation}) {
     
         <TextInput  style={styles.TextInput}  multiline  placeholder="Contraseña" placeholderTextColor="#6C7076" onChangeText={(val) => setPassword(val)}/><br/>
   
-        <TouchableOpacity title ="Iniciar Sesión" onPress={()=>{validar()}}><Text style={styles.button}>Iniciar Sesion</Text></TouchableOpacity>
+        <TouchableOpacity title ="Iniciar Sesión" onPress={()=>{validar()}}><Text style={[styles.button, styles.TextoBoton]}>Iniciar Sesion</Text></TouchableOpacity>
 
 
 
@@ -58,11 +60,14 @@ export default function LogIn({navigation}) {
 const styles = StyleSheet.create({
     container:{
       flex:1,
+      width:'100vw',
+      height:'100vh',
       backgroundColor:'#012245',
     },
     TextInput:{
       borderWidth: 1,
       width: '300px',
+      height: '150px',
       alignSelf: 'center',
       padding: 8,
       margin: 10,
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
     button:{
         width: '300px',
         maxWidth: '200%',
-        height: '50px',
+        height: '40px',
         alignSelf: 'center',  
         justifyContent: 'center',
         backgroundColor: '#0076C5',
@@ -95,11 +100,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: 'white',
     },
+    TextoBoton:{
+        width: '300px',
+        maxWidth: '200%',
+        boxShadow: '0 2px 4px #005b98',
+        color: 'white',
+        fontSize:'28px',
+        textAlign: 'center',
+        fontFamily: "Krona One",
+    },
     logo: {
         alignSelf: 'center',  
+        resizeMode:'contain',
         justifyContent: 'center',
-        width: "70%",
-        height: "70%",
-    
+        width: "50%",
+        height: "50%",
       },
   })
