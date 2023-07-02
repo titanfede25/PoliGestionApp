@@ -7,7 +7,7 @@ namespace MVC.Models
 {
     public static class BD
     {
-        private static string _connectionString =  @"Server=A-PHZ2-CIDI-038;DataBase=PoliGestion;Trusted_Connection=True";
+        private static string _connectionString =  @"Server=DESKTOP-HQIE6V6\SQLEXPRESS;DataBase=PoliGestion;Trusted_Connection=True";
         public static List<Policia> ListarPolicias()
         {
             List<Policia> lista = new List<Policia>();
@@ -19,16 +19,26 @@ namespace MVC.Models
             return lista;
         }
         public static void AgregarPolicia(Policia Pol){
-        string sql = "INSERT INTO Policias VALUES (@pDNI, @pNombre, @pNumeroPlaca, @pRol, @pFechaNacimiento, @pPassword, @pIdPolicia)";
+        string sql = "INSERT INTO Policias VALUES (@pDNI, @pNombre, @pNumeroPlaca, @pRol, @pFechaNacimiento, @pPassword)";
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password, pIdPolicia=Pol.Idpolicia});
+            db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password});
         }
         }
         public static void EliminarPolicia(int idPolicia){
-            string sql = "DELETE FROM Autos WHERE idPolicia = @pIdPolicia";
+            string sql = "DELETE FROM Policias WHERE idPolicia = @pIdPolicia";
             using(SqlConnection db = new SqlConnection(_connectionString)){
                 db.Execute(sql, new { pIdPolicia = idPolicia });
             }
+        }
+        public static Policia ObtenerPolicias(int idPolicia)
+        {
+            Policia NuevoPoli = null;
+            string sql = "SELECT * FROM Policias WHERE idPolicia = @pIdPolicia";
+            using(SqlConnection db = new SqlConnection(_connectionString))
+            {
+                NuevoPoli = db.QueryFirstOrDefault<Policia>(sql, new {pIdPolicia = idPolicia});
+            }
+            return NuevoPoli;
         }
     }
 }
