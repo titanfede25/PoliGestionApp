@@ -6,7 +6,6 @@
     <h1 class="display-4" style="color: rgb(0, 0, 0);">Listado de Policias</h1><br>
     
     <button type="button" class="btn btn-primary"><a class="nav-link text-dark" href='@Url.Action("AgregarPolicia","Home")'>Agregar Policia</a></button> <br><br>
-
     <table> 
         <tr>
             <th>DNI</th>
@@ -25,10 +24,12 @@
                 <td>@a.NumeroPlaca</td>
                 <td>@a.Rol</td>
                 <td>@(((DateTime)a.FechaNacimiento).ToString("dd/MM/yyyy"))</td>
-                <td><button><a type="button" class="btn btn-danger" href='@Url.Action("EliminarPolicia", "Home", new {idPolicia = @a.Idpolicia})'>Eliminar</a></button></td>
+                <td><form method="post" action='@Url.Action("EliminarPolicia", "Home", new { idPolicia = a.Idpolicia })'>
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form></td>
                 <td><button type="button" class="btn btn-info"><a class="text-dark" href='@Url.Action("ModificarPolicia","Home", new {idPolicia = @a.Idpolicia})'>Modificar</a></button></td>
             </tr>
-            @(ViewBag.IdObtenerPoli=a.Idpolicia);
         }
     </table>    
 </div>

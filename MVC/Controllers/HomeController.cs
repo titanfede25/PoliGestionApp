@@ -38,6 +38,7 @@ namespace MVC.Controllers
             return View();
         }
         
+        [HttpGet]
         public IActionResult ModificarPolicia(int idPolicia)
         {
             ViewBag.IdPoliModi = BD.ObtenerPolicias(idPolicia);
@@ -50,7 +51,7 @@ namespace MVC.Controllers
             return View(ViewBag.IdPoliModi);
         }
 
-        [HttpPut("{idPolicia}")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult GuardarPolicia2(Policia Pol, int idPolicia)
         {
@@ -66,7 +67,7 @@ namespace MVC.Controllers
             return RedirectToAction("ListarPolicias", new { idPolicia = Pol.Idpolicia });
         }
 
-        [HttpDelete("{idPolicia}")]
+        [HttpPost("{idPolicia}")]
         public IActionResult EliminarPolicia(int idPolicia)
         {
             BD.EliminarPolicia(idPolicia);
