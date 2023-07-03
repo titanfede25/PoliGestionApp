@@ -30,34 +30,59 @@ namespace MVC.Controllers
             return RedirectToAction("ListarPolicias");
         }
 
-        [HttpPost]
-        public IActionResult ModificarPolicia(Policia Pol, int idPolicia)
-        {
-            Policia Poli = BD.ObtenerPolicias(idPolicia);
+//        [HttpPost]
+//        public IActionResult ModificarPolicia(Policia Pol, int idPolicia)
+//        {
+//            Policia Poli = BD.ObtenerPolicias(idPolicia);
+//
+//            if (Poli == null)
+//            {
+//                return RedirectToAction("ListarPolicias");
+//            }
+//
+//            Poli.Nombre = Pol.Nombre;
+//            Poli.NumeroPlaca = Pol.NumeroPlaca;
+//            Poli.Rol = Pol.Rol;
+//            Poli.FechaNacimiento = Pol.FechaNacimiento;
+//
+//            BD.ModificarPolicia(Poli);
+//
+//            return RedirectToAction("ListarPolicias");
+//        }
 
-            if (Poli == null)
+
+
+        public IActionResult ModificarPolicia(int idPolicia)
+        {
+            Policia PoliModi = BD.ObtenerPolicias(idPolicia);
+            System.Console.WriteLine(idPolicia);
+            ViewBag.IdPoliModi = PoliModi.Idpolicia;
+            if (PoliModi.Idpolicia == null)
             {
                 return RedirectToAction("ListarPolicias");
             }
 
-            Poli.Nombre = Pol.Nombre;
-            Poli.NumeroPlaca = Pol.NumeroPlaca;
-            Poli.Rol = Pol.Rol;
-            Poli.FechaNacimiento = Pol.FechaNacimiento;
-
-            BD.ModificarPolicia(Poli, Poli.Idpolicia);
-
-            return RedirectToAction("ListarPolicias");
+            return View();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("poli")]
         [ValidateAntiForgeryToken]
-        public IActionResult GuardarPolicia2(Policia Pol, int Idpolicia)
+        public IActionResult GuardarPolicia2(Policia Pol, int idPolicia)
         {
-            BD.ModificarPolicia(Pol, Idpolicia);
-            return RedirectToAction("ListarPolicias");
+            BD.ModificarPolicia(Pol, ViewBag.IdPoliModi);
+            Console.WriteLine(idPolicia);
+            return RedirectToAction("ListarPolicias", new { idPolicia = Pol.Idpolicia });
         }
+
+//        [HttpPost]
+//        [Route("poli")]
+//        [ValidateAntiForgeryToken]
+//        public IActionResult GuardarPolicia2(Policia Pol, int Idpolicia)
+//        {
+//            BD.ModificarPolicia(Pol);
+//            return RedirectToAction("ListarPolicias");
+//        }
 
         public IActionResult Index()
         {

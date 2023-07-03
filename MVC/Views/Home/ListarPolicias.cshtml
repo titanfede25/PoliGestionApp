@@ -12,6 +12,7 @@
             <th>Nombre</th>
             <th>Numero Placa</th>
             <th>Rol</th>
+            <th>Id</th>
             <th>Fecha Nacimiento</th>
             <th>Eliminar</th>
             <th>Actualizar</th>
@@ -23,6 +24,7 @@
                 <td>@a.Nombre</td>
                 <td>@a.NumeroPlaca</td>
                 <td>@a.Rol</td>
+                <td>@a.Idpolicia</td>
                 <td>@(((DateTime)a.FechaNacimiento).ToString("dd/MM/yyyy"))</td>
                 <td><form method="post" action='@Url.Action("EliminarPolicia", "Home", new { idPolicia = a.Idpolicia })'>
                     @Html.AntiForgeryToken()
