@@ -9,11 +9,11 @@ export default function ListadoInicial({route, navigation}) {
   let date = new Date();
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container}><br></br>
       <ScrollView>
         
       <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>  
-      <Text style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text> 
+      <Text style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text> <br></br>  
       {json.rutas.map((post) => {
         let horasInicial    = new Date(post.horaInicial.replace('Z','')).getHours();
         if (horasInicial < 10){
@@ -36,12 +36,10 @@ export default function ListadoInicial({route, navigation}) {
         return (
           <View key={IdRuta}>
             <Text style={styles.hora}>{horasInicial}:{minutosInicial} - {horasFinal}:{minutosFinal} hs</Text>
-
-            
-            <View style={styles.contenedorLista}>
+              <View style={styles.contenedorLista}>
               <View style={styles.SquareShape}></View>
               <Text style={styles.title}>{post.direccionInicial}{'\n'} - {post.direccionFinal}</Text> 
-            </View>
+            </View><br></br>
           </View>
         );
       })}
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
     fontSize: "200%",
     fontFamily: "Krona One",
     fontWeight: "bold",
-    color: "#a6dced",
+    color: "#0076C5",
     textAlign: 'center',
     width: "100%",
     float: 'right', 

@@ -28,21 +28,10 @@ export default function Preview({route, navigation}) {
 
   if (json.rutas.length > 0){
     result = (
-      <View style={styles.container}>
-        
-        <Text style={styles.Puntito}>.</Text>
-        <Text style={styles.Puntito}>.</Text>
+      <View style={styles.container}><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <Image style={styles.logo} source={require('./assets/logo.PNG')}/>
-        <Text style={styles.Puntito}>.</Text>
-        <Text style={styles.Puntito}>.</Text>
-        <Text style={styles.Puntito}>.</Text>
-
-
-        
-        <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text>
-        <Text style={styles.Puntito}>.</Text>
+        <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text><br></br>
         <Text style={styles.detalles}>Detalles:</Text>
-        <Text style={styles.Puntito}>.</Text>
         <Text style={styles.textito}>Empezar en:</Text> 
         <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
         <Text style={styles.textito}>Horario: {horasInicial}:{minutosInicial} - {horasFinal}:{minutosFinal} hs</Text><br/>  

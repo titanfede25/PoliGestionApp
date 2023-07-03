@@ -5,8 +5,8 @@ import "@fontsource/krona-one/400.css";
 
 
 export default function LogIn({navigation}) {
-    let [password, setPassword] = useState('1234');
-    let [DNI, setDNI]           = useState('47206175');
+    let [password, setPassword] = useState('');
+    let [DNI, setDNI]           = useState('');
     let [data, setData]         = useState([]);
     let [ERROR, setERROR]       = useState('');
     let url1 = "http://localhost:3001/getPoli/" + DNI + "/" + password;  
@@ -32,7 +32,7 @@ export default function LogIn({navigation}) {
 
    return (
         <View style={styles.container}>
-
+            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <ScrollView >
 
         <Image style={styles.logo} source={require('./assets/logo.PNG')}/>
@@ -45,7 +45,7 @@ export default function LogIn({navigation}) {
 
         <Text style={styles.Text}>Ingrese su contraseña:</Text>
     
-        <TextInput  style={styles.TextInput}  multiline  placeholder="Contraseña" placeholderTextColor="#6C7076" onChangeText={(val) => setPassword(val)}/><br/>
+        <TextInput  style={styles.TextInput}  multiline  placeholder="Contraseña" placeholderTextColor="#6C7076" onChangeText={(val) => setPassword(val)}/><br/><br></br>
   
         <TouchableOpacity title ="Iniciar Sesión" onPress={()=>{validar()}}><Text style={[styles.button, styles.TextoBoton]}>Iniciar Sesion</Text></TouchableOpacity>
 
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         maxWidth: '200%',
         boxShadow: '0 2px 4px #005b98',
         color: 'white',
-        fontSize:'28px',
+        fontSize:'25px',
         textAlign: 'center',
         fontFamily: "Krona One",
     },
