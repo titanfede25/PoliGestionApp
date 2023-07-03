@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Agregar Policia";
+}
+
+<div class="text-center">
+    <h1 class="display-4" style="color: rgb(0, 0, 0);">Agregar Policia</h1><br>
+    
+    <h3><u>Completa el formulario para agregar un policia</u></h3><br>
+
+    <form method="post" action='@Url.Action("GuardarPolicia", "Home")'>
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" name="Idpolicia" value="@ViewBag.Idpolicia">
+        Nombre Completo: <input type="text" name="nombre" size="20" required><br><br>
+        DNI: <input type="text" name="DNI" size="30" required><br><br>
+        Fecha Nacimiento: <input type="date" name="fechaNacimiento" size="20" required><br><br>
+        Rol: <input type="text" name="rol" size="30" required><br><br>
+        N° de Placa: <input type="text" name="numeroPlaca" size="20" required><br><br>
+        Contraseña: <input type="password" name="password" size="20" required><br><br>
+        <input class="btn btn-primary" type="submit" value="Guardar Policia">
+        <input class="btn btn-danger" type="reset" value="Borrar datos ingresados">
+        <br><br>
+        <a href='@Url.Action("ListarPolicias", "Home")' class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
