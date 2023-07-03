@@ -35,7 +35,7 @@ namespace MVC.Models
 
         public static Policia ObtenerPolicias(int idPolicia)
         {
-            Policia NuevoPoli = null;
+            Policia NuevoPoli;
             string sql = "SELECT * FROM Policias WHERE idPolicia = @pIdPolicia";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
