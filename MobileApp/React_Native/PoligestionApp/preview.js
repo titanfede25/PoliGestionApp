@@ -30,7 +30,7 @@ export default function Preview({route, navigation}) {
     result = (
       <View style={styles.container}><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
         <Image style={styles.logo} source={require('./assets/logo.PNG')}/>
-        <Text style={styles.titulo}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text><br></br>
+        <TouchableOpacity title = "hoy"><Text style={[styles.button, styles.textoboton]}  onPress={()=>{navigation.navigate('ListadoInicial',{json: json});}}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text></TouchableOpacity><br></br>
         <Text style={styles.detalles}>Detalles:</Text>
         <Text style={styles.textito}>Empezar en:</Text> 
         <Text style={styles.textito}>{json.rutas[0].direccionInicial}</Text>
@@ -76,6 +76,10 @@ const styles = StyleSheet.create({
     paddingTop:0,
     paddingHorizontal:0,
     textDecorationLine: 'underline',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1.5, height: -1},
+    textShadowOffset: {width: 1.5, height: 1},
+    
     },
     detalles:{
       fontSize: 40,
@@ -85,12 +89,19 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       justifyContent: 'center',
       textDecorationLine: 'underline',
+      textShadowColor: 'black',
+      textShadowOffset: {width: -1.5, height: -1},
+      textShadowOffset: {width: 1.5, height: 1},
     },
     textito:{
       fontSize: 20,
       textAlign: 'center',
       color:'white',
       fontWeight: 'bold',
+      textShadowColor: 'black',
+      textShadowOffset: {width: -1.5, height: -1},
+      textShadowOffset: {width: 1.5, height: 1},
+      
     },
     button:{
       width: '300px',

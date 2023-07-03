@@ -5,11 +5,12 @@ import "@fontsource/krona-one/400.css";
 
 
 export default function LogIn({navigation}) {
-    let [password, setPassword] = useState('');
-    let [DNI, setDNI]           = useState('');
+    let [password, setPassword] = useState('1234');
+    let [DNI, setDNI]           = useState('47206175');
     let [data, setData]         = useState([]);
     let [ERROR, setERROR]       = useState('');
     let url1 = "http://localhost:3001/getPoli/" + DNI + "/" + password;  
+    console.log(url1);
     useEffect(() => {}, []);
 
     const validar = ()=>{
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     button:{
         width: '300px',
         maxWidth: '200%',
-        height: '40px',
+        height:'auto',
         alignSelf: 'center',  
         justifyContent: 'center',
         backgroundColor: '#0076C5',
@@ -99,15 +100,20 @@ const styles = StyleSheet.create({
     fontFamily: "Krona One",
     fontWeight: "bold",
     color: 'white',
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1.5, height: -1},
+    textShadowOffset: {width: 1.5, height: 1},
     },
     TextoBoton:{
         width: '300px',
+        height:'auto',
         maxWidth: '200%',
         boxShadow: '0 2px 4px #005b98',
         color: 'white',
         fontSize:'25px',
         textAlign: 'center',
         fontFamily: "Krona One",
+        
     },
     logo: {
         alignSelf: 'center',  

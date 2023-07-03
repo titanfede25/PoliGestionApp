@@ -13,7 +13,7 @@ export default function ListadoInicial({route, navigation}) {
       <ScrollView>
         
       <Image style={styles.logo} source={require('./assets/logo.PNG')}/><br></br>  
-      <Text style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</Text> <br></br>  
+      <TouchableOpacity style={styles.hoy}>Hoy, {json.dia} {date.getDate()}/{date.getMonth()+1}</TouchableOpacity> <br></br>  
       {json.rutas.map((post) => {
         let horasInicial    = new Date(post.horaInicial.replace('Z','')).getHours();
         if (horasInicial < 10){
@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
     fontSize:30,
     fontFamily: "Krona One",
     color: "white",
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1.5, height: -1},
+    textShadowOffset: {width: 1.5, height: 1},
   },
 
   title: {
@@ -100,7 +103,11 @@ const styles = StyleSheet.create({
     width: "100%",
     float: 'right', 
     paddingTop:0,
-    paddingHorizontal:0, 
+    paddingHorizontal:0,
+    textShadowColor: 'black',
+    textShadowOffset: {width: -1.5, height: -1},
+    textShadowOffset: {width: 1.5, height: 1},
+    
   },
   contenedorLista:{
     flexDirection: 'row',
