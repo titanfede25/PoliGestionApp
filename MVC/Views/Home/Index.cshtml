@@ -3,29 +3,18 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4" style="color: rgb(0, 0, 0);">Listado de Policias</h1><br>
+    <h1 class="display-4" style="color: rgb(0, 0, 0);">Inicio</h1><br>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Corporis nisi iusto autem rem animi dolore molestiae doloremque. <br>
+    Illo at quae optio porro, in ea, iure modi voluptas est beatae vitae!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Corporis nisi iusto autem rem animi dolore molestiae doloremque. <br>
+    Illo at quae optio porro, in ea, iure modi voluptas est beatae vitae!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Corporis nisi iusto autem rem animi dolore molestiae doloremque. <br>
+    Illo at quae optio porro, in ea, iure modi voluptas est beatae vitae!</p>
     
-    <button type="button" class="btn btn-primary"><a class="nav-link text-dark" href='@Url.Action("AgregarPolicia","Home")'>Agregar Policia</a></button> <br><br>
-    <table> 
-        <tr>
-            <th>DNI</th>
-            <th>Nombre</th>
-            <th>Numero Placa</th>
-            <th>Rol</th>
-            <th>Fecha Nacimiento</th>
-            <th>Eliminar</th>
-            <th>Ver Detalles</th>
-        </tr>
-        @foreach(Policia a in ViewBag.Lista) 
-        {
-            <tr>
-                <td>@a.DNI</td>
-                <td>@a.Nombre</td>
-                <td>@a.NumeroPlaca</td>
-                <td>@a.Rol</td>
-                <td>@(((DateTime)a.FechaNacimiento).ToString("dd/MM/yyyy"))</td>
-                <td><a type="button" class="btn btn-danger" href='@Url.Action("EliminarPolicia", new {pIdPolicia = @a.Idpolicia})'>Eliminar</a></td>
-            </tr>
-        }
-    </table>    
+    <button type="button" class="btn btn-primary"><a class="nav-link text-dark" href='@Url.Action("Login","Home")'>Iniciar Sesión</a></button> <br><br>
+ 
 </div>

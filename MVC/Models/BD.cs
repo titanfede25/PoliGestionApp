@@ -24,12 +24,15 @@ namespace MVC.Models
             db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password});
         }
         }
-        public static void EliminarPolicia(int idPolicia){
+        public static void EliminarPolicia(int idPolicia)
+        {
             string sql = "DELETE FROM Policias WHERE idPolicia = @pIdPolicia";
-            using(SqlConnection db = new SqlConnection(_connectionString)){
+            using(SqlConnection db = new SqlConnection(_connectionString))
+            {
                 db.Execute(sql, new { pIdPolicia = idPolicia });
             }
         }
+
         public static Policia ObtenerPolicias(int idPolicia)
         {
             Policia NuevoPoli = null;
@@ -40,5 +43,13 @@ namespace MVC.Models
             }
             return NuevoPoli;
         }
+        public static void ModificarPolicia(Policia Pol, int Idpolicia)
+        {
+            string sql = "UPDATE Policia set DNI = @pDNI, nombre = @pNombre, numeroPlaca = @pNumeroPlaca, rol = @pRol, fechaNacimiento = @pFechaNacimiento, password = @pPassword WHERE idPolicia = @pId";
+            using(SqlConnection db = new SqlConnection(_connectionString))
+            {
+                db.Execute(sql, new {pId = Pol.Idpolicia, pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password});
+            }
+        }  
     }
 }
