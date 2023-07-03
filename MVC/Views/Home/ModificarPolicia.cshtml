@@ -3,12 +3,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Modificar Policia 💀</h1>
+    <h1 class="display-4">Modificar Policia</h1>
     <br><br><br>
     <h3><u>Completa el formulario para modificar un policia</u></h3><br>
     
     
-    <form method="post" action='@Url.Action("GuardarPolicia2", "Home", new { idPolicia = ViewBag.IdPoliModi })'>
+    <form method="post" action='@Url.Action("GuardarPolicia2", "Home", new { idPolicia = @ViewBag.IdPoliModi })'>
         @Html.AntiForgeryToken()
         
         Nombre Completo: <input type="text" name="nombre" size="20" required><br><br>
@@ -22,5 +22,4 @@
         <br><br>
         <a href='@Url.Action("ListarPolicias", "Home")' class="btn btn-secondary">Cancelar</a>
     </form>
-    
 </div>
