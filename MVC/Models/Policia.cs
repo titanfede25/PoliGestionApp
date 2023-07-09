@@ -10,7 +10,33 @@ namespace MVC.Models
         private DateTime? _fechaNacimiento;
         private string? _password;
         private int _idpolicia;
-        
+        private int _fkRoles;
+        private int _fkRutas;
+
+        public int FkRutas
+        {
+            get
+            {
+                return _fkRutas;
+            }
+            set
+            {
+                _fkRutas = value;
+            }
+
+        }
+        public int FkRoles
+        {
+            get
+            {
+                return _fkRoles;
+            }
+            set
+            {
+                _fkRoles = value;
+            }
+
+        }
         public int DNI
         {
             get

@@ -23,42 +23,20 @@ namespace MVC.Controllers
             return View();
         }
 
-//        [HttpPost]
-//        public IActionResult ModificarPolicia(Policia Pol, int idPolicia)
-//        {
-//            Policia Poli = BD.ObtenerPolicias(idPolicia);
-//
-//            if (Poli == null)
-//            {
-//                return RedirectToAction("ListarPolicias");
-//            }
-//
-//            Poli.Nombre = Pol.Nombre;
-//            Poli.NumeroPlaca = Pol.NumeroPlaca;
-//            Poli.Rol = Pol.Rol;
-//            Poli.FechaNacimiento = Pol.FechaNacimiento;
-//
-//            BD.ModificarPolicia(Poli);
-//
-//            return RedirectToAction("ListarPolicias");
-//        }
-
-
-
         public IActionResult ModificarPolicia(int idPolicia)
         {
+            
+            ViewBag.ListaRoles = BD.ListarRoles();
             Policia PoliModi = BD.ObtenerPolicias(idPolicia);
-            //System.Console.WriteLine(idPolicia);
-            //System.Console.WriteLine(PoliModi.Nombre);
             ViewBag.Id = PoliModi.Idpolicia;
             ViewBag.DNI = PoliModi.DNI;
             ViewBag.Nombre = PoliModi.Nombre;
             ViewBag.NumeroPlaca = PoliModi.NumeroPlaca;
-            ViewBag.Rol = PoliModi.Rol;
+            ViewBag.Rol = PoliModi.FkRoles;
             ViewBag.FechaNacimiento = PoliModi.FechaNacimiento;
             ViewBag.Password = PoliModi.Password;
+            ViewBag.FkRutas = PoliModi.FkRutas;
             
-
             return View(idPolicia);
         }
 
@@ -76,17 +54,6 @@ namespace MVC.Controllers
             return View("ModificarPolicia", Pol);
         }
 
-        
-
-//        [HttpPost]
-//        [Route("poli")]
-//        [ValidateAntiForgeryToken]
-//        public IActionResult GuardarPolicia2(Policia Pol, int Idpolicia)
-//        {
-//            BD.ModificarPolicia(Pol);
-//            return RedirectToAction("ListarPolicias");
-//        }
-
         public IActionResult Index()
         {
             return View();
@@ -94,6 +61,7 @@ namespace MVC.Controllers
 
         public IActionResult AgregarPolicia(int idPolicia)
         {
+            ViewBag.ListaRoles = BD.ListarRoles();
             ViewBag.IdPolicia = idPolicia;
             return View();
         }
@@ -110,6 +78,7 @@ namespace MVC.Controllers
         [HttpPost("{idPolicia}")]
         public IActionResult EliminarPolicia(int idPolicia)
         {
+
             BD.EliminarPolicia(idPolicia);
             return RedirectToAction("ListarPolicias", new { Idpolicia = idPolicia});
         }
