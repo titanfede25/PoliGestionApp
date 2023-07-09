@@ -7,7 +7,7 @@ namespace MVC.Models
 {
     public static class BD
     {
-        private static string _connectionString =  @"Server=A-PHZ2-CIDI-024;DataBase=PoliGestion;Trusted_Connection=True";
+        private static string _connectionString =  @"Server=DESKTOP-HQIE6V6\SQLEXPRESS;DataBase=PoliGestion;Trusted_Connection=True";
         public static List<Policia> ListarPolicias()
         {
             List<Policia> lista = new List<Policia>();
@@ -45,10 +45,10 @@ namespace MVC.Models
         }
         public static void ModificarPolicia(Policia Pol, int IdPolicia)
         {
-            string sql = "UPDATE Policia set DNI = @pDNI, nombre = @pNombre, numeroPlaca = @pNumeroPlaca, rol = @pRol, fechaNacimiento = @pFechaNacimiento, password = @pPassword WHERE IdPolicia = @pId";
+            string sql = "UPDATE Policias set DNI = @pDNI, nombre = @pNombre, numeroPlaca = @pNumeroPlaca, rol = @pRol, fechaNacimiento = @pFechaNacimiento, password = @pPassword WHERE IdPolicia = @pId";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
-                db.Execute(sql, new {pId = IdPolicia, pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password});
+                db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password, pId = IdPolicia});
             }
         } 
     }

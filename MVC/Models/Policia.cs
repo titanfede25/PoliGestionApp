@@ -31,7 +31,7 @@ namespace MVC.Models
             }
             set
             {
-            _nombre = value;
+                _nombre = value;
             }
         }
         public string? NumeroPlaca

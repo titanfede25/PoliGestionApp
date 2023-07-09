@@ -28,7 +28,7 @@
                 <td>@(((DateTime)a.FechaNacimiento).ToString("dd/MM/yyyy"))</td>
                 <td><form method="post" action='@Url.Action("EliminarPolicia", "Home", new { idPolicia = a.Idpolicia })'>
                     @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <button onclick="return confirm('¿Estas seguro?');" type="submit" class="btn btn-danger">Eliminar</button>
                 </form></td>
                 <td><button type="button" class="btn btn-info"><a class="text-dark" href='@Url.Action("ModificarPolicia","Home", new {idPolicia = @a.Idpolicia})'>Modificar</a></button></td>
             </tr>

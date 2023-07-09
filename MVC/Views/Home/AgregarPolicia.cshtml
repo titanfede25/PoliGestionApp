@@ -3,23 +3,32 @@
 }
 
 <div class="text-center">
+    <br><br>
     <h1 class="display-4" style="color: rgb(0, 0, 0);">Agregar Policia</h1><br>
-    <br><br><br>
+    <br>
     <h3><u>Completa el formulario para agregar un policia</u></h3><br>
-
-    <form method="post" action='@Url.Action("GuardarPolicia", "Home")'>
+</div>
+<form method="post" autocomplete="off" action='@Url.Action("GuardarPolicia", "Home")'>
+    <div style="margin-left: 39%;">
         @Html.AntiForgeryToken()
-
         <input type="hidden" name="Idpolicia" value="@ViewBag.Idpolicia">
-        Nombre Completo: <input type="text" name="nombre" size="20" required><br><br>
-        DNI: <input type="text" name="DNI" size="30" required><br><br>
+        Nombre Completo: <input type="text" name="nombre" size="15" autofocus required><br><br>
+        DNI: <input type="text" name="DNI" size="29" maxlength="8" minlength="8" required><br><br>
         Fecha Nacimiento: <input type="date" name="fechaNacimiento" size="20" required><br><br>
-        Rol: <input type="text" name="rol" size="30" required><br><br>
-        N° de Placa: <input type="text" name="numeroPlaca" size="20" required><br><br>
-        Contraseña: <input type="password" name="password" size="20" required><br><br>
+        Rol: <input multiple list="rol" type="text" name="rol" size="30" required><br><br>
+        <datalist id="rol">
+            <option value="Vial"></option>
+            <option value="Patrullero"></option>
+            <option value="Administrador"></option>
+            <option value="Detective"></option>
+        </datalist>
+        N° de Placa: <input type="text" name="numeroPlaca" size="22" required><br><br>
+        Contraseña: <input type="password" name="password" size="22" required><br><br>
+    </div>
+    <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Guardar Policia">
         <input class="btn btn-danger" type="reset" value="Borrar datos ingresados">
         <br><br>
         <a href='@Url.Action("ListarPolicias", "Home")' class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+    </div>
+</form>

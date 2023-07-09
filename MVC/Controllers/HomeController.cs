@@ -23,13 +23,6 @@ namespace MVC.Controllers
             return View();
         }
 
-
-        public IActionResult ObtenerPolicias(int idpolicia)
-        {
-            ViewBag.IdObtenerPoli = BD.ObtenerPolicias(idpolicia);
-            return RedirectToAction("ListarPolicias");
-        }
-
 //        [HttpPost]
 //        public IActionResult ModificarPolicia(Policia Pol, int idPolicia)
 //        {
@@ -55,25 +48,35 @@ namespace MVC.Controllers
         public IActionResult ModificarPolicia(int idPolicia)
         {
             Policia PoliModi = BD.ObtenerPolicias(idPolicia);
-            System.Console.WriteLine(idPolicia);
-            ViewBag.IdPoliModi = PoliModi.Idpolicia;
-            if (PoliModi.Idpolicia == null)
-            {
-                return RedirectToAction("ListarPolicias");
-            }
+            //System.Console.WriteLine(idPolicia);
+            //System.Console.WriteLine(PoliModi.Nombre);
+            ViewBag.Id = PoliModi.Idpolicia;
+            ViewBag.DNI = PoliModi.DNI;
+            ViewBag.Nombre = PoliModi.Nombre;
+            ViewBag.NumeroPlaca = PoliModi.NumeroPlaca;
+            ViewBag.Rol = PoliModi.Rol;
+            ViewBag.FechaNacimiento = PoliModi.FechaNacimiento;
+            ViewBag.Password = PoliModi.Password;
+            
 
-            return View();
+            return View(idPolicia);
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("poli")]
         [ValidateAntiForgeryToken]
         public IActionResult GuardarPolicia2(Policia Pol, int idPolicia)
         {
-            BD.ModificarPolicia(Pol, ViewBag.IdPoliModi);
-            Console.WriteLine(idPolicia);
-            return RedirectToAction("ListarPolicias", new { idPolicia = Pol.Idpolicia });
+            System.Console.WriteLine(idPolicia);
+            if (ModelState.IsValid)
+            {
+                BD.ModificarPolicia(Pol, Pol.Idpolicia);
+                return RedirectToAction("ListarPolicias");
+            }
+            return View("ModificarPolicia", Pol);
         }
+
+        
 
 //        [HttpPost]
 //        [Route("poli")]
