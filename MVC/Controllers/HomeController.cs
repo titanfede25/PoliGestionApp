@@ -78,8 +78,16 @@ namespace MVC.Controllers
         [HttpPost("{idPolicia}")]
         public IActionResult EliminarPolicia(int idPolicia)
         {
-
-            BD.EliminarPolicia(idPolicia);
+            Policia pol = BD.ObtenerPolicias(idPolicia);
+            if (pol != null)
+            {
+                if (pol.FkRoles > 0)
+                {
+                    return RedirectToAction("ListarPolicias");
+                }
+                BD.EliminarPolicia(idPolicia);
+            }
+            
             return RedirectToAction("ListarPolicias", new { Idpolicia = idPolicia});
         }
 
