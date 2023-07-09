@@ -21,7 +21,7 @@ namespace MVC.Models
         public static List<Roles> ListarRoles()
         {
             List<Roles> lista = new List<Roles>();
-            string sql = "SELECT * FROM Roles";
+            string sql = "SELECT * FROM Rol";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 lista = db.Query<Roles>(sql).AsList();
@@ -55,7 +55,7 @@ namespace MVC.Models
         }
         public static void ModificarPolicia(Policia Pol, int IdPolicia)
         {
-            string sql = "UPDATE Policias set DNI = @pDNI, nombre = @pNombre, numeroPlaca = @pNumeroPlaca, rol = @pRol, fechaNacimiento = @pFechaNacimiento, password = @pPassword, FKRoles = @pFKroles, FKRutas = @pFKutas WHERE IdPolicia = @pId";
+            string sql = "UPDATE Policias set DNI = @pDNI, nombre = @pNombre, numeroPlaca = @pNumeroPlaca, fechaNacimiento = @pFechaNacimiento, password = @pPassword, FKRoles = @pFKroles, FKRutas = @pFKutas WHERE IdPolicia = @pId";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password, pFKroles=Pol.FkRoles, pFKutas=Pol.FkRutas, pId = IdPolicia});

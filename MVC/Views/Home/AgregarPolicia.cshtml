@@ -19,12 +19,12 @@
         <select name="role" id="rol">
             @foreach (Roles r in ViewBag.ListaRoles)
             {
-                <option value="@r.Rol">@r.Rol</option>
+                <option value="@r.Rols">@r.Rols</option>
             }
         </select><br><br>
         N° de Placa: <input type="text" name="numeroPlaca" size="22" maxlength="5" minlength="5" required><br><br>
         Contraseña: <input type="password" name="password" size="22" required><br><br>
-        ID ruta: <input type="number" name="fkrutas" size="26" required><br><br>
+        ID ruta: <input type="number" name="fkrutas" size="26"><br><br>
     </div>
     <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Guardar Policia">

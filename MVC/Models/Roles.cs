@@ -5,7 +5,7 @@ namespace MVC.Models
     {   
         private string? _roles;
         private int _id;
-        public string? Rol
+        public string? Rols
         {
             get
             {

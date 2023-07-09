@@ -81,7 +81,7 @@ namespace MVC.Controllers
             Policia pol = BD.ObtenerPolicias(idPolicia);
             if (pol != null)
             {
-                if (pol.FkRoles > 0)
+                if (pol.FkRoles > 0 || pol.FkRoles != null)
                 {
                     return RedirectToAction("ListarPolicias");
                 }
