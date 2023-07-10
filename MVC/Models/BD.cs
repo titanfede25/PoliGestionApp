@@ -7,11 +7,12 @@ namespace MVC.Models
 {
     public static class BD
     {
-        private static string _connectionString =  @"Server=DESKTOP-HQIE6V6\SQLEXPRESS;DataBase=PoliGestion;Trusted_Connection=True";
+        private static string _connectionString =  @"Server=A-PHZ2-CIDI-034;DataBase=PoliGestion;Trusted_Connection=True";
         public static List<Policia> ListarPolicias()
         {
             List<Policia> lista = new List<Policia>();
-            string sql = "SELECT * FROM Policias";
+            string sql = "SELECT Policias.idPolicia, Policias.nombre, Policias.numeroPlaca, Policias.DNI, Policias.password, Policias.fechaNacimiento, Policias.FKRoles, "+ 
+             "(Select count (*) from Dias where Dias.FKPolicia = Policias.idPolicia) as CantidadRutas FROM Policias";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 lista = db.Query<Policia>(sql).AsList();
@@ -21,7 +22,7 @@ namespace MVC.Models
         public static List<Roles> ListarRoles()
         {
             List<Roles> lista = new List<Roles>();
-            string sql = "SELECT * FROM Rol";
+            string sql = "SELECT * FROM Roles";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
                 lista = db.Query<Roles>(sql).AsList();
@@ -29,9 +30,10 @@ namespace MVC.Models
             return lista;
         }
         public static void AgregarPolicia(Policia Pol){
-        string sql = "INSERT INTO Policias VALUES (@pDNI, @pNombre, @pNumeroPlaca, @pFKRoles, @pFKRutas, @pFechaNacimiento, @pPassword)";
+        string sql = "INSERT INTO Policias (nombre, numeroPlaca, DNI, fechaNacimiento, password, FKRoles ) VALUES (@pNombre, @pNumeroPlaca, @pDNI, @pFechaNacimiento, @pPassword, @pFKRoles)";
+        Console.WriteLine("El rol a guardar es: "+Pol.FkRoles);
         using(SqlConnection db = new SqlConnection(_connectionString)){
-            db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pFKRoles = Pol.FkRoles, pFKRutas = Pol.FkRutas, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password});
+            db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pFKRoles = Pol.FkRoles, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password});
         }
         }
         public static void EliminarPolicia(int idPolicia)
@@ -43,7 +45,7 @@ namespace MVC.Models
             }
         }
 
-        public static Policia ObtenerPolicias(int idPolicia)
+        public static Policia ObtenerPolicia(int idPolicia)
         {
             Policia NuevoPoli;
             string sql = "SELECT * FROM Policias WHERE idPolicia = @pIdPolicia";
@@ -55,10 +57,10 @@ namespace MVC.Models
         }
         public static void ModificarPolicia(Policia Pol, int IdPolicia)
         {
-            string sql = "UPDATE Policias set DNI = @pDNI, nombre = @pNombre, numeroPlaca = @pNumeroPlaca, fechaNacimiento = @pFechaNacimiento, password = @pPassword, FKRoles = @pFKroles, FKRutas = @pFKutas WHERE IdPolicia = @pId";
+            string sql = "UPDATE Policias set DNI = @pDNI, nombre = @pNombre, numeroPlaca = @pNumeroPlaca, fechaNacimiento = @pFechaNacimiento, password = @pPassword, FKRoles = @pFKroles WHERE IdPolicia = @pId";
             using(SqlConnection db = new SqlConnection(_connectionString))
             {
-                db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pRol = Pol.Rol, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password, pFKroles=Pol.FkRoles, pFKutas=Pol.FkRutas, pId = IdPolicia});
+                db.Execute(sql, new {pDNI = Pol.DNI, pNombre = Pol.Nombre, pNumeroPlaca = Pol.NumeroPlaca, pFechaNacimiento=Pol.FechaNacimiento, pPassword=Pol.Password, pFKroles=Pol.FkRoles, pId = IdPolicia});
             }
         } 
     }

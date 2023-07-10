@@ -4,8 +4,8 @@ namespace MVC.Models
     public class Roles
     {   
         private string? _roles;
-        private int _id;
-        public string? Rols
+        private int _idRol;
+        public string? Rol
         {
             get
             {
@@ -16,15 +16,15 @@ namespace MVC.Models
                 _roles = value;
             }
         }
-        public int Id
+        public int IdRol
         {
             get
             {
-                return _id;
+                return _idRol;
             }
             set
             {
-                _id = value;
+                _idRol = value;
             }
         }
     }

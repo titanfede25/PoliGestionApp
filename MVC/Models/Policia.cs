@@ -7,21 +7,21 @@ namespace MVC.Models
         private string? _nombre;
         private string? _numeroPlaca;
         private string? _rol;
-        private DateTime? _fechaNacimiento;
+        private DateTime _fechaNacimiento;
         private string? _password;
         private int _idpolicia;
         private int _fkRoles;
-        private int _fkRutas;
+        private int _cantidadRutas;
 
-        public int FkRutas
+        public int CantidadRutas
         {
             get
             {
-                return _fkRutas;
+                return _cantidadRutas;
             }
             set
             {
-                _fkRutas = value;
+                _cantidadRutas = value;
             }
 
         }
@@ -82,7 +82,7 @@ namespace MVC.Models
                 _rol = value;
             }
         }
-        public DateTime? FechaNacimiento
+        public DateTime FechaNacimiento
         {
             get
             {

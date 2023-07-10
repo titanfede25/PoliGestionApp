@@ -27,7 +27,7 @@ namespace MVC.Controllers
         {
             
             ViewBag.ListaRoles = BD.ListarRoles();
-            Policia PoliModi = BD.ObtenerPolicias(idPolicia);
+            Policia PoliModi = BD.ObtenerPolicia(idPolicia);
             ViewBag.Id = PoliModi.Idpolicia;
             ViewBag.DNI = PoliModi.DNI;
             ViewBag.Nombre = PoliModi.Nombre;
@@ -35,7 +35,7 @@ namespace MVC.Controllers
             ViewBag.Rol = PoliModi.FkRoles;
             ViewBag.FechaNacimiento = PoliModi.FechaNacimiento;
             ViewBag.Password = PoliModi.Password;
-            ViewBag.FkRutas = PoliModi.FkRutas;
+            ViewBag.CantidadRutas = PoliModi.CantidadRutas;
             
             return View(idPolicia);
         }
@@ -71,6 +71,7 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult GuardarPolicia(Policia Pol)
         {
+            Console.WriteLine("El rol se bindea: " + Pol.FkRoles);
             BD.AgregarPolicia(Pol);
             return RedirectToAction("ListarPolicias", new { idPolicia = Pol.Idpolicia });
         }
@@ -78,13 +79,9 @@ namespace MVC.Controllers
         [HttpPost("{idPolicia}")]
         public IActionResult EliminarPolicia(int idPolicia)
         {
-            Policia pol = BD.ObtenerPolicias(idPolicia);
+            Policia pol = BD.ObtenerPolicia(idPolicia);
             if (pol != null)
             {
-                if (pol.FkRoles > 0 || pol.FkRoles != null)
-                {
-                    return RedirectToAction("ListarPolicias");
-                }
                 BD.EliminarPolicia(idPolicia);
             }
             
